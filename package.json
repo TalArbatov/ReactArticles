@@ -4,7 +4,8 @@
   "description": "A small system to present React + Redux",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open --hot --mode development --content-base client/public"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
   }
 }
