@@ -6,6 +6,13 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: outputPath
+    },
+    mode: 'development',
+    module: {
+        rules: [{
+            loader: 'babel-loader',
+            test: /\.js$/,
+            exclude: /node_modules/
+        }]
     }
-    mode: 'development' 
 }
