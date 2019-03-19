@@ -7,7 +7,13 @@ const Container = styled.div`
     height: 50px;
     width: 100%;
     ul {
-
+        display: inline-block;
+    }
+    li, a{
+        display: inline-block;
+        color:white;
+        margin-left: 6px;
+        text-decoration:none;
     }
 `;
 

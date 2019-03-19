@@ -1,25 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
+import styled from 'styled-components'
 import Navbar from './Navbar/Navbar';
 import { Switch, Route } from 'react-router-dom';
 import ViewArticles from './ViewArticles/ViewArticles';
 import CreateArticle from './CreateArticle/CreateArticle';
+import ViewArticle from './ViewArticle/ViewArticle';
 
-class App extends Component {
-    state = {
-        
-    }
-    render() {
-        return(
-            <div>
-                <Navbar />
+const App = props => {
+    return (
+        <div>
+            <Navbar />
+            <Container>
                 <Switch>
                     <Route path='/createArticle' component={CreateArticle}></Route>
                     <Route path='/viewArticles' component={ViewArticles}></Route>
-                    <Route path='/createArticle' component={CreateArticle}></Route>
+                    <Route path='/article/:id' component={ViewArticle}></Route>
                 </Switch>
-            </div>
-        )
-    }
+            </Container>
+        </div>
+    )
 }
+
+const Container = styled.div`
+    padding:10px;
+`;
 
 export default App;
