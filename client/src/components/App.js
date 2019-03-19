@@ -1,11 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-class App extends Component {
+class App extends COmponent {
+    state = {
+
+    }
     render() {
         return(
-            <div>
-                <h1>Hello from App</h1>
-            </div>
+            
         )
     }
 }
