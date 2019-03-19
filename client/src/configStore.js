@@ -4,7 +4,7 @@ import articleReducer from "./reducers/articleReducer";
 const configStore = () =>
   createStore(
     combineReducers({
-      articleReducer
+      articleReducer,
     })
   );
 

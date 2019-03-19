@@ -1,4 +1,4 @@
-import { ADD_ARTICLE, REMOVE_ARTICLE } from "../actions/actionTypes";
+import { ADD_ARTICLE, REMOVE_ARTICLE, ADD_COMMENT, REMOVE_COMMENT } from "../actions/actionTypes";
 
 let defaultState = {
   articles: []
@@ -6,7 +6,7 @@ let defaultState = {
 
 const author = "Tal Arbatov";
 
-if (localStorage.state != null) defaultState = JSON.parse(localStorage.state);
+if (localStorage.articleReducer != null) defaultState = JSON.parse(localStorage.articleReducer);
 
 const articleReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -15,9 +15,10 @@ const articleReducer = (state = defaultState, action) => {
         ...action.article,
         author: author,
         dateCreated: Date.now(),
-        id: state.articles.length + 1
+        id: state.articles.length + 1,
+        comments: []
       };
-      localStorage.state = JSON.stringify({
+      localStorage.articleReducer = JSON.stringify({
         ...state,
         articles: [...state.articles, article]
       });
@@ -26,8 +27,41 @@ const articleReducer = (state = defaultState, action) => {
       const newArticles = state.articles.filter(ar => {
         return ar.id != action.id
       });
-      localStorage.state = JSON.stringify({...state, articles: newArticles});
+      localStorage.articleReducer = JSON.stringify({...state, articles: newArticles});
       return {...state, articles: newArticles};
+    case ADD_COMMENT:
+      //find targetArticleIndex
+      const targetArticleIndex = state.articles.findIndex(ar => {
+        return ar.id == action.comment.articleID
+      });
+      console.log('targetArticleIndex')
+      console.log(targetArticleIndex)
+      const targetArticle = state.articles[targetArticleIndex];
+      console.log('targetArticle')
+      console.log(targetArticle)
+      //create comment
+      const comment = {
+        id: targetArticle.comments.length + 1,
+        articleID: action.comment.articleID,
+        author: author,
+        dateCreated: Date.now(),
+        content: action.comment.content,
+      }
+      console.log('comment')
+      console.log(comment)
+      //push comment to target article
+      targetArticle.comments.push(comment);
+
+      console.log('targetArticle after push');
+      console.log(targetArticle);
+
+      const newArticles2 = [...state.articles.slice(0, targetArticleIndex), targetArticle
+      , ...state.articles.slice(targetArticleIndex + 1)]
+
+      console.log('newArticles2');
+      console.log(newArticles2)
+
+      return state;
     default:
       return state;
   }
