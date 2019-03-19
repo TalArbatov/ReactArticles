@@ -27,8 +27,8 @@ const articleReducer = (state = defaultState, action) => {
       const newArticles = state.articles.filter(ar => {
         return ar.id != action.id
       });
-      localStorage.articleReducer = JSON.stringify({...state, articles: newArticles});
-      return {...state, articles: newArticles};
+      localStorage.articleReducer = JSON.stringify({ ...state, articles: newArticles });
+      return { ...state, articles: newArticles };
     case ADD_COMMENT:
       //find targetArticleIndex
       const targetArticleIndex = state.articles.findIndex(ar => {
@@ -36,7 +36,7 @@ const articleReducer = (state = defaultState, action) => {
       });
       console.log('targetArticleIndex')
       console.log(targetArticleIndex)
-      const targetArticle = state.articles[targetArticleIndex];
+      const targetArticle = {...state.articles[targetArticleIndex]};
       console.log('targetArticle')
       console.log(targetArticle)
       //create comment
@@ -47,21 +47,41 @@ const articleReducer = (state = defaultState, action) => {
         dateCreated: Date.now(),
         content: action.comment.content,
       }
-      console.log('comment')
-      console.log(comment)
       //push comment to target article
       targetArticle.comments.push(comment);
 
-      console.log('targetArticle after push');
-      console.log(targetArticle);
 
       const newArticles2 = [...state.articles.slice(0, targetArticleIndex), targetArticle
-      , ...state.articles.slice(targetArticleIndex + 1)]
+        , ...state.articles.slice(targetArticleIndex + 1)]
 
       console.log('newArticles2');
       console.log(newArticles2)
 
-      return state;
+      localStorage.articleReducer = JSON.stringify({ ...state, articles: newArticles2 });
+      return { ...state, articles: newArticles2 };
+    case REMOVE_COMMENT:
+      const targetArticleIndex2 = state.articles.findIndex(ar => {
+        return ar.id == action.comment.articleID
+      }) 
+      console.log('targetArticleIndex2');
+      console.log(targetArticleIndex2);
+      
+      const targetArticle2 = {...state.articles[targetArticleIndex2]};
+      console.log('targetArticle2');
+      console.log(targetArticle2);
+      
+
+      const newComments = targetArticle2.comments.filter(comment => {
+        return comment.id != action.comment.id
+      });
+      targetArticle2.comments = newComments;
+      const newArticles3 = [...state.articles.slice(0, targetArticleIndex2), targetArticle2,
+      ...state.articles.slice(targetArticleIndex2 + 1)]
+      // targetArticle2.comments.filter(comment => {
+      //   comment.id != action.comment.id
+      // });
+      localStorage.articleReducer = JSON.stringify({ ...state, articles: newArticles3 });
+      return {...state, articles: newArticles3};
     default:
       return state;
   }

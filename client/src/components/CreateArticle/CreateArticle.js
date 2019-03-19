@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createArticle } from "../../actions/actionGenerators";
-
+import { Link } from 'react-router-dom'
 const CreateArticle = props => {
   const [inputValue, onValueChange] = useState({
       title: '',
@@ -37,7 +37,7 @@ const CreateArticle = props => {
       />
       <p>content:</p>
       <textarea onChange={e => textChangeHandler(e, 'content')}></textarea>
-      <button onClick={() => submitForm(inputValue)}>Submit</button>
+      <Link to='/viewArticles'><button onClick={() => submitForm(inputValue)}>Submit</button></Link>
     </div>
   );
 };

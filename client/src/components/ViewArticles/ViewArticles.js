@@ -1,14 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import ArticleLink from "./ArticleLink";
+import ArticleList from './ArticleList';
 
 const ViewArticles = props => {
   return (
     <div>
       <h1>View Articles</h1>
-      {props.articleReducer.articles.map((ar, key) => {
-        return <ArticleLink article={ar}/>;
-      })}
+      <ArticleList articles={props.articleReducer.articles}/>
     </div>
   );
 };
