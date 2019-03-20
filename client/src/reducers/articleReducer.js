@@ -77,9 +77,6 @@ const articleReducer = (state = defaultState, action) => {
       targetArticle2.comments = newComments;
       const newArticles3 = [...state.articles.slice(0, targetArticleIndex2), targetArticle2,
       ...state.articles.slice(targetArticleIndex2 + 1)]
-      // targetArticle2.comments.filter(comment => {
-      //   comment.id != action.comment.id
-      // });
       localStorage.articleReducer = JSON.stringify({ ...state, articles: newArticles3 });
       return {...state, articles: newArticles3};
     default:

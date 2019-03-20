@@ -1,12 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { NavItem } from 'react-materialize'
+const NavbarButton = ({ to, text }) => {
+  return (
+      <NavItem>
+              <Link to={to}>
 
-const NavbarButton = ({to, text}) => {
-    return(
-            <li>
-                <Link to={to}>{text}</Link>
-            </li>
-    )
-}
+        {text}
+        </Link>
+      </NavItem>
+
+  );
+};
+
+NavbarButton.propTypes = {
+  to: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
+};
 
 export default NavbarButton;
