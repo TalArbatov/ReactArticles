@@ -28,6 +28,10 @@ const links = [
   {
     to: '/viewArticles',
     text: 'View Article'
+  },
+  {
+    to: '/login',
+    text: 'Login'
   }
 ]
 
