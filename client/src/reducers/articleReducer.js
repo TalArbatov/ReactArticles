@@ -26,10 +26,11 @@ const articleReducer = (state = defaultState, action) => {
         id: state.articles.length + 1,
         comments: []
       };
-
-      axios.post('/api/createArticle', article, (res) => {
+  
+      //AXIOS
+      axios.post('/api/createArticle', article).then((res) => {
         console.log(res);
-      })
+      });
 
       localStorage.articleReducer = JSON.stringify({
         ...state,

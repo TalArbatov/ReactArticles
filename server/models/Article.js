@@ -20,5 +20,9 @@ const ArticleSchema = new Schema({
       }
     ]
   });
+  ArticleSchema.methods.speak = function () {
+    console.log(`Test!`);
+  }
   
+
   mongoose.model('Article', ArticleSchema);
