@@ -28,8 +28,8 @@ const articleReducer = (state = defaultState, action) => {
       };
   
       //AXIOS
-      axios.post('/api/createArticle', article).then((res) => {
-        console.log(res);
+      axios.post('/api/articles', article).then((res) => {
+        console.log(res.data);
       });
 
       localStorage.articleReducer = JSON.stringify({
